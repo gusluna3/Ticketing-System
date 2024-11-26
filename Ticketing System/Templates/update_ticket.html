@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Ticket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffcc80; /* Light orange background */
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #e65100; /* Dark orange header */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px 8px 0 0;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: #ff5722; /* Button color */
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+        .header a:hover {
+            background-color: #e64a19;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #ffe0b2; /* Light orange box */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            text-align: center;
+            color: #e65100;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #bf360c; /* Darker orange */
+        }
+        input, textarea, select, button {
+            width: 80%;
+            max-width: 300px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button {
+            background-color: #ff5722; /* Orange button */
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Update Ticket #{{ ticket.id }}</h1>
+        <a href="/admin_login">Admin Login</a>
+    </div>
+    <div class="container">
+        <h2>Update Ticket Details</h2>
+        <form method="POST">
+            <label for="status">Status:</label>
+            <select id="status" name="status" required>
+                <option value="New" {% if ticket.status == 'New' %}selected{% endif %}>New</option>
+                <option value="Ongoing" {% if ticket.status == 'Ongoing' %}selected{% endif %}>Ongoing</option>
+                <option value="Resolved" {% if ticket.status == 'Resolved' %}selected{% endif %}>Resolved</option>
+            </select>
+
+            <label for="notes">Comments:</label>
+            <textarea id="notes" name="notes" placeholder="Add comments or updates">{{ ticket.notes }}</textarea>
+
+            <button type="submit">Update Ticket</button>
+        </form>
+    </div>
+</body>
+</html>
